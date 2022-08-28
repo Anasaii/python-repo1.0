@@ -7,14 +7,64 @@ import secrets
 import string
 import msvcrt
 import time
+import re
+
+
 """
 TODO:
 upperMin = -u
 lowerMin = -l
 digitMin = -d
 charcMin = -c
+passLength
+all
+last used (requires json)
 """
 
+def passlen():
+    password_length = input("Enter password length: ")
+    return password_length
+
+def upperMin():
+    uppercase_minimum = input("Enter upppercase minimum: ")
+    return uppercase_minimum
+
+def lowerMin():
+    lowercase_minimum = input("Enter lowercase minimum: ")
+    return lowercase_minimum
+
+def digitMin():
+    digit_minimum: input("Enter digit minimum:")
+    return digit_minimum
+
+def charcMin():
+    special_minimumum = input("Enter special chacter minimum")
+    return special_minimumum
+
+def useALL():
+    return
+
+def invalidFlag():
+    raise Exception("Invalid flag")
+
+def choose_flag(tupledSearchedFlags = "-all"):
+    options = {
+        "-all" : useALL,
+        "-u" : upperMin,
+        "-l" : lowerMin,
+        "-d" : digitMin,
+        "-c" : charcMin
+    }
+
+    value = options.get(tupledSearchedFlags, invalidFlag)
+    return value
+
+
+
+
+def custom_formulize(tupledSearchedFlags):
+    value = choose_flag(tupledSearchedFlags)
+    return value
 
 def default_formulize(a):
     password = []
@@ -40,24 +90,40 @@ while 0 < 1:
     # Convert to int if digit
     if session_id in string.digits:
         session_id = int(session_id)
-    # print(session_id)
 
+    #advanced settings
     if session_id == "\r":
-        print("Entering Complex settings...")
+        print("                  Entering advanced settings... \n")
         time.sleep(.5)
-        print("-Flags:\n [  passLength  = -p] \n [ uppercaseMin = -u] \n [ lowercaseMin = -l] \n [   digitsMin  = -d] \n [  specialMin  = -c]")
-        flags = input("")
+        print("-Flags:\n [     useAll   = -all] [   lastUsed   =  -lu] \n [ uppercaseMin =   -u] [ lowercaseMin =   -l] \n [   digitsMin  =   -d] [  specialMin  =   -c] \n [  passLength  =   -p]")
+
+    
+        allowedFlags = ('-p', '-u', '-l', '-d', '-c', '-all', '-lu')
+        flags = input("\n")
+        searchedFlags = re.split("\s", flags)
+        tupledSearchedFlags = tuple(map(str, searchedFlags))
+        print(tupledSearchedFlags)
+        passFlag = any(item in searchedFlags for item in allowedFlags)
+    
+
+        if passFlag == True:
+            password = custom_formulize(tupledSearchedFlags)
+            print(password)
+
         break
 
+        #commands not followed
     elif isinstance(session_id, str) == True:
-        print("\n"), print(60 * '-'), print('You are stupid. Use a number')
+        print('                 You are stupid. Use a number.')
 
+        #digit given
     elif isinstance((session_id), int) == True:
         session_id = int(session_id)
         finalPassword = (default_formulize(session_id))
         print("\n", finalPassword)
-        pyperclip.copy(finalPassword)
+        #pyperclip.copy(finalPassword)
         break
 
+        #catch unknown characters
     else:
         print("an error has occured")
