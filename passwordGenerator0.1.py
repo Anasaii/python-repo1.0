@@ -1,5 +1,6 @@
 from pickle import NONE
 import random
+from turtle import done
 import pyperclip
 from curses.ascii import isdigit
 from re import X
@@ -34,7 +35,7 @@ def lowerMin():
     return lowercase_minimum
 
 def digitMin():
-    digit_minimum: input("Enter digit minimum:")
+    digit_minimum = input("Enter digit minimum: ")
     return digit_minimum
 
 def charcMin():
@@ -42,12 +43,13 @@ def charcMin():
     return special_minimumum
 
 def useALL():
-    return
+    x = 15
+    return x
 
 def invalidFlag():
     raise Exception("Invalid flag")
 
-def choose_flag(tupledSearchedFlags = "-all"):
+def choose_flag(flag):
     options = {
         "-all" : useALL,
         "-u" : upperMin,
@@ -56,8 +58,8 @@ def choose_flag(tupledSearchedFlags = "-all"):
         "-c" : charcMin
     }
 
-    value = options.get(tupledSearchedFlags, invalidFlag)
-    return value
+    value_got = options.get(flag, invalidFlag)
+    return value_got()
 
 
 
@@ -101,14 +103,12 @@ while 0 < 1:
         allowedFlags = ('-p', '-u', '-l', '-d', '-c', '-all', '-lu')
         flags = input("\n")
         searchedFlags = re.split("\s", flags)
-        tupledSearchedFlags = tuple(map(str, searchedFlags))
-        print(tupledSearchedFlags)
         passFlag = any(item in searchedFlags for item in allowedFlags)
     
 
         if passFlag == True:
-            password = custom_formulize(tupledSearchedFlags)
-            print(password)
+            done = choose_flag("-c -u")
+            print(done)
 
         break
 
