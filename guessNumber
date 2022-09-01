@@ -1,0 +1,12 @@
+from random import randrange
+import secrets, string, random
+
+x = random.randrange(9)
+
+
+guessedChoice = int(input("Think hard and long and guess... "))
+
+if guessedChoice == x:
+    print("You are lucky!!!")
+else:
+    print("You are not lucky :( ")
