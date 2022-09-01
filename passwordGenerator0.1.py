@@ -20,6 +20,7 @@ charcMin = -c
 passLength
 all
 last used (requires json)
+upcoming
 """
 
 def passlen():
