@@ -43,7 +43,7 @@ def charcMin():
     return special_minimumum
 
 def useALL():
-    x = 15
+    x = "you returned all you fucking dimwit, goodjob"
     return x
 
 def invalidFlag():
@@ -107,7 +107,7 @@ while 0 < 1:
     
 
         if passFlag == True:
-            done = choose_flag("-c -u")
+            done = choose_flag("-c")
             print(done)
 
         break
