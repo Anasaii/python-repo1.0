@@ -1,12 +1,14 @@
 from random import randrange
 import secrets, string, random
 
-x = random.randrange(9)
+loop = 0
 
-
-guessedChoice = int(input("Think hard and long and guess... "))
-
-if guessedChoice == x:
-    print("You are lucky!!!")
-else:
-    print("You are not lucky :( ")
+while loop < 1:
+    x = random.randrange(9)
+    guessedChoice = int(input("Think hard and long and guess... "))
+    if guessedChoice == x:
+        print("You are lucky!!! :) ")
+        loop += 1
+    else:
+        print("You are not lucky :( ")
+        print(("Number was " + str(x)))

@@ -108,7 +108,7 @@ while 0 < 1:
     
 
         if passFlag == True:
-            done = choose_flag("-c")
+            done = choose_flag(searchedFlags[0])
             print(done)
 
         break
