@@ -6,7 +6,7 @@ import time
 #from colored import fg
 import msvcrt
 
-def slowprint(s, speed=0.01):
+def slowprint(s, speed=0.03):
      for c in s + '\n':
         sys.stdout.write(c)
         sys.stdout.flush() # defeat buffering
